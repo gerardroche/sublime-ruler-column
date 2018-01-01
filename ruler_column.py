@@ -17,12 +17,6 @@ class RulerColumnEvents(sublime_plugin.EventListener):
             return
 
         ruler = settings.get('ruler_column')
-        if not ruler:
-            rulers = settings.get('rulers')
-            if not rulers:
-                return
-
-            ruler = min(rulers)
 
         regions = []
         for line in view.lines(Region(0, view.size())):
