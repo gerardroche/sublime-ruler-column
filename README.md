@@ -28,3 +28,9 @@ Name the override file the same as your color scheme e.g. for the [MonokaiFree](
     ]
 }
 ```
+
+<!--
+TODO Add link to documentation. The documentation for the new color scheme
+format is not publicly available yet.
+https://www.sublimetext.com/docs/3/color_schemes.html
+-->
