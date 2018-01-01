@@ -17,6 +17,9 @@ class RulerColumnEvents(sublime_plugin.EventListener):
         if settings.get('word_wrap'):
             return
 
+        if settings.get('is_widget'):
+            return
+
         ruler = settings.get('ruler_column')
 
         regions = []
