@@ -35,7 +35,7 @@ class RulerColumnEvents(sublime_plugin.EventListener):
         # We also need to add the regions, even if the regions list created
         # above is empty, because any stray column regions need to be cleared
         # e.g. if the user split a long line that have a column ruler then it
-        # needs to  cleared.
+        # needs to cleared.
 
         view.add_regions(
             'ruler_columns',
