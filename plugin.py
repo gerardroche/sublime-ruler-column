@@ -25,16 +25,21 @@ class RulerColumnEvents(sublime_plugin.EventListener):
                 a = line.begin() + ruler
                 regions.append(Region(a, a + 1))
 
-        if regions:
-            # We're stuck using "no outline" regions, because Sublime Text can't
-            # draw block-like (non-rounded) regions.
-            # See https://github.com/SublimeTextIssues/Core/issues/2134.
-            view.add_regions(
-                'ruler_columns',
-                regions,
-                'region.yellowish ruler.column',
-                '',
-                DRAW_NO_OUTLINE)
+        # We're stuck using "no outline" regions, because Sublime Text can't
+        # draw block-like (non-rounded) regions.
+        # See https://github.com/SublimeTextIssues/Core/issues/2134.
+
+        # We also need to add the regions, event if the regions list created
+        # above is empty, because any stray column regions need to be cleared
+        # e.g. if the user split a long line that have a column ruler then it
+        # needs to  cleared.
+
+        view.add_regions(
+            'ruler_columns',
+            regions,
+            'region.yellowish ruler.column',
+            '',
+            DRAW_NO_OUTLINE)
 
     def on_activated_async(self, view):
         self._update_ruler_columns(view)
