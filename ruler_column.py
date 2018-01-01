@@ -1,3 +1,4 @@
+from sublime import DRAW_NO_OUTLINE
 from sublime import Region
 import sublime_plugin
 
@@ -28,7 +29,9 @@ class RulerColumnEvents(sublime_plugin.EventListener):
             view.add_regions(
                 'ruler_columns',
                 regions,
-                'ruler.column')
+                'ruler.column',
+                '',
+                DRAW_NO_OUTLINE)
 
     def on_activated_async(self, view):
         self._update_ruler_columns(view)
