@@ -6,9 +6,6 @@ import sublime_plugin
 # TODO Optimise to hell. This is just an initial proof of concept. Updating all
 # lines of a views after every keystroke is very inefficient.
 
-# TODO Report ST issue suggesting to improve style of the adding regions,
-# because rounded regions, looks crap.
-
 
 class RulerColumnEvents(sublime_plugin.EventListener):
 
