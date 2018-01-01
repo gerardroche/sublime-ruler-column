@@ -29,7 +29,7 @@ class RulerColumnEvents(sublime_plugin.EventListener):
             view.add_regions(
                 'ruler_columns',
                 regions,
-                'ruler.column',
+                'region.yellowish ruler.column',
                 '',
                 DRAW_NO_OUTLINE)
 
