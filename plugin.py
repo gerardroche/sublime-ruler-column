@@ -35,7 +35,7 @@ class RulerColumnEvents(sublime_plugin.EventListener):
         # draw block-like (non-rounded) regions.
         # See https://github.com/SublimeTextIssues/Core/issues/2134.
 
-        # We also need to add the regions, event if the regions list created
+        # We also need to add the regions, even if the regions list created
         # above is empty, because any stray column regions need to be cleared
         # e.g. if the user split a long line that have a column ruler then it
         # needs to  cleared.
