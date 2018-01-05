@@ -22,8 +22,7 @@ Name the override file the same as your color scheme e.g. for the [MonokaiFree](
     [
         {
             "scope": "ruler.column",
-            "background": "#e6db74",
-            "foreground": "#272822"
+            "background": "#75715e9d"
         }
     ]
 }
