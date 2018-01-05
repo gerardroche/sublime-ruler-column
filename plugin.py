@@ -20,13 +20,13 @@ class RulerColumnEvents(sublime_plugin.EventListener):
         if settings.get('is_widget') or settings.get('result_file_regex'):
             return
 
-        ruler = settings.get('ruler_column')
-
         regions = []
-        for line in view.lines(Region(0, view.size())):
-            if line.size() > ruler:
-                a = line.begin() + ruler
-                regions.append(Region(a, a + 1))
+        ruler = settings.get('ruler_column')
+        if ruler:
+            for line in view.lines(Region(0, view.size())):
+                if line.size() > ruler:
+                    a = line.begin() + ruler
+                    regions.append(Region(a, a + 1))
 
         # We're stuck using "no outline" regions, because Sublime Text can't
         # draw block-like (non-rounded) regions.
