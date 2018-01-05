@@ -9,7 +9,7 @@ import sublime_plugin
 
 class RulerColumnEvents(sublime_plugin.EventListener):
 
-    def _update_ruler_columns(self, view):
+    def _update(self, view):
         settings = view.settings()
         if settings.get('word_wrap'):
             return
@@ -21,6 +21,7 @@ class RulerColumnEvents(sublime_plugin.EventListener):
             return
 
         regions = []
+
         ruler = settings.get('ruler_column')
         if ruler:
             for line in view.lines(Region(0, view.size())):
@@ -28,27 +29,26 @@ class RulerColumnEvents(sublime_plugin.EventListener):
                     a = line.begin() + ruler
                     regions.append(Region(a, a + 1))
 
-        # We're stuck using "no outline" regions, because Sublime Text can't
-        # draw block-like (non-rounded) regions.
-        # See https://github.com/SublimeTextIssues/Core/issues/2134.
-
         # We also need to add the regions, even if the regions list created
         # above is empty, because any stray column regions need to be cleared
         # e.g. if the user split a long line that have a column ruler then it
         # needs to cleared.
-
         view.add_regions(
             'ruler_columns',
             regions,
             'region.yellowish ruler.column',
             '',
+
+            # We're stuck using "no outline" regions, because Sublime Text can't
+            # draw block-like (non-rounded) regions.
+            # See https://github.com/SublimeTextIssues/Core/issues/2134.
             DRAW_NO_OUTLINE)
 
     def on_activated_async(self, view):
-        self._update_ruler_columns(view)
+        self._update(view)
 
     def on_modified_async(self, view):
-        self._update_ruler_columns(view)
+        self._update(view)
 
     def on_post_save_async(self, view):
-        self._update_ruler_columns(view)
+        self._update(view)
