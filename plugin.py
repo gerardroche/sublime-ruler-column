@@ -17,7 +17,7 @@ class RulerColumnEvents(sublime_plugin.EventListener):
         # Work around issues where build panels and other related views
         # shouldn't have the column ruler drawn. This is a heuristic, I don't
         # know of any canonical way to solve this issue.
-        if settings.get('is_widget') or settings.get('result_file_regex'):
+        if settings.get('is_widget') or view.is_scratch() or settings.get('result_file_regex'):
             return
 
         regions = []
