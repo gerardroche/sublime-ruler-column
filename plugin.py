@@ -23,8 +23,8 @@ class RulerColumnEvents(sublime_plugin.EventListener):
 
         regions = []
         column = get('ruler_column')
+        width = get('ruler_column_width', 0)
         if column:
-            width = get('ruler_column_width', 0)
             append = regions.append
             for line in view.lines(Region(0, view.size())):
                 if line.size() > column:
