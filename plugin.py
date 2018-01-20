@@ -1,3 +1,4 @@
+from sublime import DRAW_EMPTY
 from sublime import DRAW_NO_OUTLINE
 from sublime import Region
 import sublime_plugin
@@ -22,12 +23,13 @@ class RulerColumnEvents(sublime_plugin.EventListener):
 
         regions = []
 
-        ruler = settings.get('ruler_column')
-        if ruler:
+        column = settings.get('ruler_column')
+        width = settings.get('ruler_column_width', 0)
+        if column:
             for line in view.lines(Region(0, view.size())):
-                if line.size() > ruler:
-                    a = line.begin() + ruler
-                    regions.append(Region(a, a + 1))
+                if line.size() > column:
+                    a = line.begin() + column
+                    regions.append(Region(a, min(a + width, line.end())))
 
         # We also need to add the regions, even if the regions list created
         # above is empty, because any stray column regions need to be cleared
@@ -38,10 +40,10 @@ class RulerColumnEvents(sublime_plugin.EventListener):
             regions,
             'region.yellowish ruler.column',
             '',
-            # We're stuck using "no outline" regions, because Sublime Text can't
-            # draw block-like (non-rounded) regions.
+            # We're stuck using "no outline" regions for regions > 0, because
+            # Sublime Text can't draw block-like (non-rounded) regions.
             # See https://github.com/SublimeTextIssues/Core/issues/2134.
-            DRAW_NO_OUTLINE)
+            DRAW_NO_OUTLINE if width > 0 else DRAW_EMPTY)
 
     def on_activated_async(self, view):
         self._update(view)
