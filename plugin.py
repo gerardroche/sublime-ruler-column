@@ -38,7 +38,7 @@ class RulerColumnEvents(sublime_plugin.EventListener):
         view.add_regions(
             'ruler_columns',
             regions,
-            'region.yellowish ruler.column',
+            'region.redish ruler.column',
             '',
             # We're stuck using "no outline" regions for regions > 0, because
             # Sublime Text can't draw block-like (non-rounded) regions.
