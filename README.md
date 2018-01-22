@@ -10,6 +10,14 @@ A Sublime Text plugin that shows ruler columns only on lines where the text over
 }
 ```
 
+You can also set the width, which defaults to `0`:
+
+```json
+{
+    "ruler_column_width": 1
+}
+```
+
 In newer versions of Sublime Text (`~= 3154`) customising the color of the ruler column is straight forward enough.
 
 Create a color scheme override in your Sublime Text User directory (find the User directory via `Menu > Preferences > Browse Packages...`).
@@ -22,7 +30,8 @@ Name the override file the same as your color scheme e.g. for the [MonokaiFree](
     [
         {
             "scope": "ruler.column",
-            "background": "#75715e9d"
+            "foreground": "#f92672",
+            "background": "#f926729d"
         }
     ]
 }
