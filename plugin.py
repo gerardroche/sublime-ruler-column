@@ -43,7 +43,7 @@ class RulerColumnEvents(sublime_plugin.EventListener):
             # We're stuck using "no outline" regions for regions > 0, because
             # Sublime Text can't draw block-like (non-rounded) regions.
             # See https://github.com/SublimeTextIssues/Core/issues/2134.
-            DRAW_NO_OUTLINE if width > 0 else DRAW_EMPTY)
+            DRAW_NO_OUTLINE if width else DRAW_EMPTY)
 
     def on_activated_async(self, view):
         self._update(view)
